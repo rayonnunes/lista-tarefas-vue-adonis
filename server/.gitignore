@@ -1,5 +1,6 @@
 # Node modules
 node_modules
+package-lock.json
 
 # Adonis directory for storing tmp files
 tmp
@@ -9,3 +10,7 @@ tmp
 
 # The development sqlite file
 database/*.sqlite
+
+# VSCode & Webstorm history directories
+.history
+.idea
