@@ -3,41 +3,45 @@
     <div class="card">
       <div class="task-container">
         <h3 class="overdue">Overdue: </h3>
-        <div class="task-row">
+        <div class="task-row" v-for="task in overduedTasks" :key="task.id">
           <div class ="task-input">
             <input type="checkbox" name="status" id="status">
             <label>
-              <span>Ontem as 9:00</span> - Atividade 1
+              {{task.title}} - <span>
+                {{ formatRelativeDate(task.deadline_date, task.deadline_time) }}
+              </span>
             </label>
           </div>
           <button>
             <span class="delete">Excluir</span>
           </button>
         </div>
-        <div class="task-row">
-          <div class ="task-input">
-            <input type="checkbox" name="status" id="status">
-            <label><span>Hoje as 7:00</span> - Atividade 1 </label>
-          </div>
-          <button>
-            <span class="delete">Excluir</span>
-          </button>
-        </div>
-        <div class="task-row">
-          <div class ="task-input">
-            <input type="checkbox" name="status" id="status">
-            <label><span>Hoje as 8:15</span> - Atividade 1 </label>
-          </div>
-          <button>
-            <span class="delete">Excluir</span>
-          </button>
-        </div>
-    </div>
+      </div>
       <div class="task-container">
         <h3>Today: </h3>
+        <div class="task-row" v-for="task in todayTasks" :key="task.id">
+          <div class ="task-input">
+            <input type="checkbox" name="status" id="status">
+            <label>
+              {{task.title}} - <span>
+                {{ formatRelativeDate(task.deadline_date, task.deadline_time) }}
+              </span>
+            </label>
+          </div>
+        </div>
       </div>
       <div class="task-container">
         <h3>This week: </h3>
+        <div class="task-row" v-for="task in nextTasks" :key="task.id">
+          <div class ="task-input">
+            <input type="checkbox" name="status" id="status">
+            <label>
+              {{task.title}} - <span>
+                {{ formatRelativeDate(task.deadline_date, task.deadline_time) }}
+              </span>
+            </label>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -45,9 +49,71 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import {
+  formatRelative,
+  isAfter,
+  isBefore,
+  isEqual,
+} from 'date-fns';
+import { mapActions, mapGetters } from 'vuex';
 
 export default defineComponent({
   name: 'HelloWorld',
+  methods: {
+    ...mapActions([
+      'getTasks',
+      'updateTask',
+      'deledteTask',
+    ]),
+
+    formatRelativeDate(date: string, time: string) {
+      const dateSplitted = date.split('T')[0];
+      const dateFormatted = new Date(`${dateSplitted}T${time}`);
+      const relativeData = formatRelative(dateFormatted, new Date());
+      return relativeData;
+    },
+  },
+  computed: {
+    ...mapGetters(['TASKS']),
+    overduedTasks() {
+      const baseDates = this.TASKS;
+      const overdued = baseDates.filter((task: any) => {
+        const dateSplitted = task.deadline_date.split('T')[0];
+        const dateFormatted = new Date(`${dateSplitted}T${task.deadline_time}`);
+        return isBefore(dateFormatted, new Date());
+      });
+      return overdued;
+    },
+    todayTasks() {
+      const baseDates = this.TASKS;
+      const todayList = baseDates.filter((task: any) => {
+        const dateSplitted = task.deadline_date.split('T')[0];
+        const dataList = dateSplitted.split('-');
+        console.log(new Date(dataList));
+
+        const dateFormatted = new Date(dataList);
+        const today = new Date();
+        const day = today.getDay() + 1;
+        const month = today.getMonth();
+        const year = today.getFullYear();
+        console.log('hoje', new Date(year, month, day));
+        return isEqual(new Date(dataList), new Date(year, month, day));
+      });
+      return todayList;
+    },
+    nextTasks() {
+      const baseDates = this.TASKS;
+      const overdued = baseDates.filter((task: any) => {
+        const dateSplitted = task.deadline_date.split('T')[0];
+        const dateFormatted = new Date(`${dateSplitted}T${task.deadline_time}`);
+        return isAfter(dateFormatted, new Date());
+      });
+      return overdued;
+    },
+  },
+  mounted() {
+    this.getTasks();
+  },
 });
 </script>
 
