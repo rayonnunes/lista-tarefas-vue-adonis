@@ -10,17 +10,29 @@
               <span>Ontem as 9:00</span> - Atividade 1
             </label>
           </div>
-
+          <button>
+            <span class="delete">Excluir</span>
+          </button>
         </div>
-        <div class ="task-input">
-          <input type="checkbox" name="status" id="status">
-          <label><span>Hoje as 7:00</span> - Atividade 1 </label>
+        <div class="task-row">
+          <div class ="task-input">
+            <input type="checkbox" name="status" id="status">
+            <label><span>Hoje as 7:00</span> - Atividade 1 </label>
+          </div>
+          <button>
+            <span class="delete">Excluir</span>
+          </button>
         </div>
-        <div class ="task-input">
-          <input type="checkbox" name="status" id="status">
-          <label><span>Hoje as 8:15</span> - Atividade 1 </label>
+        <div class="task-row">
+          <div class ="task-input">
+            <input type="checkbox" name="status" id="status">
+            <label><span>Hoje as 8:15</span> - Atividade 1 </label>
+          </div>
+          <button>
+            <span class="delete">Excluir</span>
+          </button>
         </div>
-      </div>
+    </div>
       <div class="task-container">
         <h3>Today: </h3>
       </div>
@@ -72,6 +84,12 @@ export default defineComponent({
     margin-bottom: 2.8rem;
     border-bottom: 1px solid #dadada;
   }
+  .task-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
   .task-input {
     margin: 1.6rem 0;
     display: flex;
@@ -82,5 +100,9 @@ export default defineComponent({
       font-size: 0.75rem;
       color: #666;
     }
+  }
+  .delete {
+    color: #d50000;
+    font-size: 0.75rem;
   }
 </style>
