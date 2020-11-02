@@ -1,38 +1,18 @@
 <template>
   <div class="home">
-    <h1>{{ name }}</h1>
-    <p>{{serverMessage}}</p>
+    <img alt="Vue logo" src="../assets/logo.png">
+    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
   </div>
 </template>
 
-<script>
-import axios from "axios";
-export default {
-  // components: {
-  //   HelloWorld
-  // },
-  data() {
-    return {
-      name: "Hello World",
-      serverMessage: ""
-    };
+<script lang="ts">
+import { defineComponent } from 'vue';
+import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+
+export default defineComponent({
+  name: 'Home',
+  components: {
+    HelloWorld,
   },
-  mounted: function() {
-    const that = this;
-    const setMessage = function(msg) {
-      that.serverMessage = msg.greeting;
-    };
-    axios.get('http://127.0.0.1:3333/')
-    .then(res => {
-      console.log(res);
-      setMessage(res.data)
-    })
-    .catch(err => {
-      console.log(err);
-    });
-    // err => {
-    //   console.log(err);
-    // });
-  }
-};
+});
 </script>
