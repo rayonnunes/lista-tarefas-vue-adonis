@@ -143,6 +143,15 @@
     haye "^2.0.1"
     lodash "^4.17.5"
 
+"@adonisjs/validator@^5.0.6":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@adonisjs/validator/-/validator-5.1.0.tgz#70f92f6fb1452685c9837658a2916f88dc848a0a"
+  integrity sha512-qz4YNfg89MzqfgluMuM1Wq7GSTOd3h2x0rn+cXT8rnva3jkgiWDaqstMSCNAelB3A2KiujbsxZk/HR0k5o9Zkg==
+  dependencies:
+    "@adonisjs/generic-exceptions" "^2.0.1"
+    indicative "^5.0.8"
+    lodash "^4.17.11"
+
 "@babel/polyfill@^7.4.3":
   version "7.12.1"
   resolved "https://registry.yarnpkg.com/@babel/polyfill/-/polyfill-7.12.1.tgz#1f2d6371d1261bbd961f3c5d5909150e12d0bd96"
@@ -1236,6 +1245,11 @@ indent-string@^3.2.0:
   resolved "https://registry.yarnpkg.com/indent-string/-/indent-string-3.2.0.tgz#4a5fd6d27cc332f37e5419a504dbb837105c9289"
   integrity sha1-Sl/W0nzDMvN+VBmlBNu4NxBckok=
 
+indicative@^5.0.8:
+  version "5.0.8"
+  resolved "https://registry.yarnpkg.com/indicative/-/indicative-5.0.8.tgz#e635f6c0838ced1a949bc898e5f8316f6291be1e"
+  integrity sha512-Do9YKlrxyvK6RpMs9AdtxmjhweKrA6hJbJejY81iD8aYjjvOU4HYkJcM2IUxC3S7ZRm/L11u67QT4OQ101N5HQ==
+
 inflation@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/inflation/-/inflation-2.0.0.tgz#8b417e47c28f925a45133d914ca1fd389107f30f"
@@ -1769,9 +1783,9 @@ mkdirp@^0.5.1:
     minimist "^1.2.5"
 
 moment@^2.24.0:
-  version "2.29.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
-  integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
+  version "2.29.4"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.4.tgz#3dbe052889fe7c1b2ed966fcb3a77328964ef108"
+  integrity sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==
 
 ms@2.0.0:
   version "2.0.0"
